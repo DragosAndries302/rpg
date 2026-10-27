@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css">
+    <title>RPG - Space Shooter</title>
+  </head>
+
+  <body>
+    <div id="game">
+      <div id="stats">
+        <span class="stat">XP: <strong><span id="xpText">0</span></strong></span>
+        <span class="stat">Health: <strong><span id="healthText">50</span></strong></span>
+        <span class="stat">Gold: <strong><span id="goldText">50</span></strong></span>
+      </div>
+
+      <div id="content">
+        <img id="img" src="start.png" class="center" alt="Your spaceship">
+      </div>
+
+      <div id="controls">
+        <button id="button1">Go to Shop</button>
+        <button id="button2">Go to Planet</button>
+        <button id="button3">Go to Galaxy</button>
+        <button id="button4">Go to Fight Final Boss</button>
+      </div>
+
+      <div id="monsterStats">
+        <span class="stat">Final Boss: <strong><span id="Final-Boss"></span></strong></span>
+        <span class="stat">Health: <strong><span id="FinalBossHealth"></span></strong></span>
+      </div>
+
+      <div id="text">
+        Welcome to your RPG adventure! You are in your spaceship.
+        Where do you want to go? Use the buttons above.
+      </div>
+
+      <audio id="attackSound" src="attackSound.mp3"></audio>
+      <audio id="breakSound" src="breakSound.mp3"></audio>
+      <audio id="defendSound" src="defendSound.mp3"></audio>
+      <audio id="fightSound" src="fightSound.mp3"></audio>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
