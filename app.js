@@ -83,28 +83,28 @@ const locations = {
     buttonText: ["Go to Shop", "Go to Planet", "Go to Galaxy", "Fight Final Boss"],
     buttonFunctions: [goShop, goPlanet, goGalaxy, fightAlejandro],
     text: "Welcome to your RPG adventure! You are in your spaceship. Where do you want to go? Use the buttons above.",
-    picture: "space.jpg"
+    picture: "space.png"
   },
 
   shop: {
     buttonText: ["Buy Health (10 gold)", "Buy Weapon (50 gold)", "Go to Spaceship", "Go to Spaceship"],
     buttonFunctions: [buyHealth, buyWeapon, goSpaceship, goSpaceship],
     text: "Welcome to the space shop!",
-    picture: "space.jpg"
+    picture: "space.png"
   },
 
   planet: {
     buttonText: ["Fight Francisco", "Go to Galaxy", "Go to Shop", "Go to Spaceship"],
     buttonFunctions: [fightFrancisco, goGalaxy, goShop, goSpaceship],
     text: "You land on the planet. You see Francisco!",
-    picture: "space.jpg"
+    picture: "space.png"
   },
 
   galaxy: {
     buttonText: ["Fight Andres", "Fight Hakan", "Fight Alejandro", "Go to Spaceship"],
     buttonFunctions: [fightAndres, fightHakan, fightAlejandro, goSpaceship],
     text: "You enter the galaxy. Your radar detects three monsters!",
-    picture: "space.jpg"
+    picture: "space.png"
   },
 
   fight: {
@@ -117,21 +117,21 @@ const locations = {
     buttonText: ["Go to Spaceship", "Go to Spaceship", "Go to Spaceship", "Go to Spaceship"],
     buttonFunctions: [goSpaceship, goSpaceship, goSpaceship, goSpaceship],
     text: "The monster has been defeated! You gain XP and gold.",
-    picture: "space.jpg"
+    picture: "space.png"
   },
 
   lose: {
     buttonText: ["Replay", "Replay", "Replay", "Replay"],
     buttonFunctions: [restart, restart, restart, restart],
     text: "You have been defeated!",
-    picture: "space.jpg"
+    picture: "space.png"
   },
 
   win: {
     buttonText: ["Replay", "Replay", "Replay", "Replay"],
     buttonFunctions: [restart, restart, restart, restart],
     text: "Congratulations! You defeated Alejandro, the final boss! You win!",
-    picture: "space.jpg"
+    picture: "space.png"
   }
 
 };
