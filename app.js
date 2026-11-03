@@ -1,4 +1,3 @@
-
 // ==========================================
 // 1. PLAYER VARIABLES
 // ==========================================
@@ -35,12 +34,12 @@ const image = document.querySelector("#img");
 // ==========================================
 
 const weapons = [
-  { name: "Small Knife", power: 5 },
-  { name: "Dagger", power: 30 },
-  { name: "Axe", power: 50 },
-  { name: "Crossbow", power: 100 },
-  { name: "Two Handed Axe", power: 300 },
-  { name: "Sword", power: 400 }
+  { name: "Laser Pistol", power: 5 },
+  { name: "Plasma Blaster", power: 30 },
+  { name: "Pulse Rifle", power: 50 },
+  { name: "Ion Cannon", power: 100 },
+  { name: "Railgun", power: 300 },
+  { name: "Antimatter Cannon", power: 400 }
 ];
 
 // ==========================================
@@ -49,26 +48,26 @@ const weapons = [
 
 const monsters = [
   {
-    name: "Kennedy",
-    picture: "kennedy.png",
+    name: "Francisco",
+    picture: "monster_1.png",
     level: 2,
     health: 15
   },
   {
-    name: "Harold",
-    picture: "harold.png",
+    name: "Andres",
+    picture: "monster_2.png",
     level: 10,
     health: 100
   },
   {
-    name: "Toth",
-    picture: "toth.png",
+    name: "Hakan",
+    picture: "monster_3.png",
     level: 50,
     health: 400
   },
   {
-    name: "Walker",
-    picture: "walker.png",
+    name: "Alejandro",
+    picture: "monster_4.png",
     level: 100,
     health: 1000
   }
@@ -80,59 +79,59 @@ const monsters = [
 
 const locations = {
 
-  town: {
-    buttonText: ["Go to Shop", "Go to Cave", "Go to Castle", "Fight Boss"],
-    buttonFunctions: [goShop, goCave, goCastle, fightWalker],
-    text: "You are in the town square. What would you like to do?",
-    picture: "town.png"
+  spaceship: {
+    buttonText: ["Go to Shop", "Go to Planet", "Go to Galaxy", "Fight Final Boss"],
+    buttonFunctions: [goShop, goPlanet, goGalaxy, fightAlejandro],
+    text: "Welcome to your RPG adventure! You are in your spaceship. Where do you want to go? Use the buttons above.",
+    picture: "space.jpg"
   },
 
   shop: {
-    buttonText: ["Buy Health (10 gold)", "Buy Weapon (50 gold)", "Go to Town", "Go to Town"],
-    buttonFunctions: [buyHealth, buyWeapon, goTown, goTown],
-    text: "Welcome to the shop!",
-    picture: "shop.png"
+    buttonText: ["Buy Health (10 gold)", "Buy Weapon (50 gold)", "Go to Spaceship", "Go to Spaceship"],
+    buttonFunctions: [buyHealth, buyWeapon, goSpaceship, goSpaceship],
+    text: "Welcome to the space shop!",
+    picture: "space.jpg"
   },
 
-  cave: {
-    buttonText: ["Fight Kennedy", "Go to Castle", "Go to Shop", "Go to Town"],
-    buttonFunctions: [fightKennedy, goCastle, goShop, goTown],
-    text: "You enter the cave. You see Kennedy!",
-    picture: "cave.png"
+  planet: {
+    buttonText: ["Fight Francisco", "Go to Galaxy", "Go to Shop", "Go to Spaceship"],
+    buttonFunctions: [fightFrancisco, goGalaxy, goShop, goSpaceship],
+    text: "You land on the planet. You see Francisco!",
+    picture: "space.jpg"
   },
 
-  castle: {
-    buttonText: ["Fight Harold", "Fight Toth", "Fight Walker", "Go to Town"],
-    buttonFunctions: [fightHarold, fightToth, fightWalker, goTown],
-    text: "You enter the castle. You see some monsters!",
-    picture: "castle.png"
+  galaxy: {
+    buttonText: ["Fight Andres", "Fight Hakan", "Fight Alejandro", "Go to Spaceship"],
+    buttonFunctions: [fightAndres, fightHakan, fightAlejandro, goSpaceship],
+    text: "You enter the galaxy. Your radar detects three monsters!",
+    picture: "space.jpg"
   },
 
   fight: {
     buttonText: ["Attack", "Dodge", "Block", "Run"],
-    buttonFunctions: [attack, dodge, block, goTown],
+    buttonFunctions: [attack, dodge, block, goSpaceship],
     text: "You are fighting a monster."
   },
 
   defeated: {
-    buttonText: ["Go to Town", "Go to Town", "Go to Town", "Go to Town"],
-    buttonFunctions: [goTown, goTown, goTown, goTown],
+    buttonText: ["Go to Spaceship", "Go to Spaceship", "Go to Spaceship", "Go to Spaceship"],
+    buttonFunctions: [goSpaceship, goSpaceship, goSpaceship, goSpaceship],
     text: "The monster has been defeated! You gain XP and gold.",
-    picture: "rip.png"
+    picture: "space.jpg"
   },
 
   lose: {
     buttonText: ["Replay", "Replay", "Replay", "Replay"],
     buttonFunctions: [restart, restart, restart, restart],
     text: "You have been defeated!",
-    picture: "gameOver.png"
+    picture: "space.jpg"
   },
 
   win: {
     buttonText: ["Replay", "Replay", "Replay", "Replay"],
     buttonFunctions: [restart, restart, restart, restart],
-    text: "Congratulations! You defeated the final boss! You win!",
-    picture: "start.png"
+    text: "Congratulations! You defeated Alejandro, the final boss! You win!",
+    picture: "space.jpg"
   }
 
 };
@@ -144,7 +143,6 @@ const locations = {
 // This function changes the buttons, text and picture.
 
 function update(location) {
-
   monsterStats.style.display = "none";
 
   button1.innerText = location.buttonText[0];
@@ -168,20 +166,20 @@ function update(location) {
 // 7. MOVEMENT BETWEEN LOCATIONS
 // ==========================================
 
-function goTown() {
-  update(locations.town);
+function goSpaceship() {
+  update(locations.spaceship);
 }
 
 function goShop() {
   update(locations.shop);
 }
 
-function goCave() {
-  update(locations.cave);
+function goPlanet() {
+  update(locations.planet);
 }
 
-function goCastle() {
-  update(locations.castle);
+function goGalaxy() {
+  update(locations.galaxy);
 }
 
 // ==========================================
@@ -189,42 +187,30 @@ function goCastle() {
 // ==========================================
 
 function buyHealth() {
-
   if (gold >= 10) {
-
     gold -= 10;
     health += 10;
 
     updateStats();
 
     text.innerText = "You bought 10 health!";
-
   } else {
-
     text.innerText = "You do not have enough gold!";
-
   }
 }
 
 function buyWeapon() {
-
   if (currentWeapon < weapons.length - 1 && gold >= 50) {
-
     gold -= 50;
     currentWeapon++;
 
     updateStats();
 
     text.innerText = "You bought a " + weapons[currentWeapon].name + "!";
-
   } else if (currentWeapon === weapons.length - 1) {
-
     text.innerText = "You already have the best weapon!";
-
   } else {
-
     text.innerText = "You do not have enough gold!";
-
   }
 }
 
@@ -232,24 +218,23 @@ function buyWeapon() {
 // 9. STARTING A FIGHT
 // ==========================================
 
-function fightKennedy() {
+function fightFrancisco() {
   startFight(0);
 }
 
-function fightHarold() {
+function fightAndres() {
   startFight(1);
 }
 
-function fightToth() {
+function fightHakan() {
   startFight(2);
 }
 
-function fightWalker() {
+function fightAlejandro() {
   startFight(3);
 }
 
 function startFight(monsterIndex) {
-
   currentMonster = monsterIndex;
 
   monsterHealth = monsters[currentMonster].health;
@@ -264,7 +249,6 @@ function startFight(monsterIndex) {
   if (image) {
     image.src = monsters[currentMonster].picture;
   }
-
 }
 
 // ==========================================
@@ -272,27 +256,21 @@ function startFight(monsterIndex) {
 // ==========================================
 
 function attack() {
-
   const weapon = weapons[currentWeapon];
 
   // Player attacks monster.
-
   monsterHealth -= weapon.power;
 
   text.innerText = "You attack " + monsters[currentMonster].name +
     " with your " + weapon.name + "!";
 
   // Check whether monster has been defeated.
-
   if (monsterHealth <= 0) {
-
     defeatMonster();
     return;
-
   }
 
   // Monster attacks player.
-
   const damage = monsters[currentMonster].level * 2;
 
   health -= damage;
@@ -300,14 +278,12 @@ function attack() {
   text.innerText += " The monster attacks you for " + damage + " damage.";
 
   // Update the screen.
-
   updateStats();
   monsterHealthText.innerText = monsterHealth;
 
   if (health <= 0) {
     lose();
   }
-
 }
 
 // ==========================================
@@ -315,9 +291,7 @@ function attack() {
 // ==========================================
 
 function dodge() {
-
   text.innerText = "You dodge the monster's attack!";
-
 }
 
 // ==========================================
@@ -325,7 +299,6 @@ function dodge() {
 // ==========================================
 
 function block() {
-
   const damage = monsters[currentMonster].level * 2;
 
   const reducedDamage = Math.ceil(damage / 2);
@@ -340,7 +313,6 @@ function block() {
   if (health <= 0) {
     lose();
   }
-
 }
 
 // ==========================================
@@ -348,7 +320,6 @@ function block() {
 // ==========================================
 
 function defeatMonster() {
-
   const monster = monsters[currentMonster];
 
   xp += monster.level;
@@ -357,18 +328,12 @@ function defeatMonster() {
 
   updateStats();
 
-  // The final monster wins the game.
-
+  // Defeating the final monster wins the game.
   if (currentMonster === 3) {
-
     update(locations.win);
-
   } else {
-
     update(locations.defeated);
-
   }
-
 }
 
 // ==========================================
@@ -376,9 +341,7 @@ function defeatMonster() {
 // ==========================================
 
 function lose() {
-
   update(locations.lose);
-
 }
 
 // ==========================================
@@ -386,7 +349,6 @@ function lose() {
 // ==========================================
 
 function restart() {
-
   xp = 0;
   health = 100;
   gold = 50;
@@ -396,8 +358,7 @@ function restart() {
 
   updateStats();
 
-  goTown();
-
+  goSpaceship();
 }
 
 function updateStats() {
@@ -406,11 +367,9 @@ function updateStats() {
   goldText.innerText = gold;
 }
 
-
-
 // ==========================================
 // 16. START THE GAME
 // ==========================================
 
 updateStats();
-goTown();
+goSpaceship();
