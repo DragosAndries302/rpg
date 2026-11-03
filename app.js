@@ -49,25 +49,25 @@ const weapons = [
 const monsters = [
   {
     name: "Francisco",
-    picture: "monster_1.png",
+    picture: "monster_3.png",
     level: 2,
     health: 15
   },
   {
     name: "Andres",
-    picture: "monster_2.png",
+    picture: "monster_4.png",
     level: 10,
     health: 100
   },
   {
     name: "Hakan",
-    picture: "monster_3.png",
+    picture: "monster_2.png",
     level: 50,
     health: 400
   },
   {
     name: "Alejandro",
-    picture: "monster_4.png",
+    picture: "monster_1.png",
     level: 100,
     health: 1000
   }
@@ -192,7 +192,6 @@ function buyHealth() {
     health += 10;
 
     updateStats();
-
     text.innerText = "You bought 10 health!";
   } else {
     text.innerText = "You do not have enough gold!";
@@ -205,7 +204,6 @@ function buyWeapon() {
     currentWeapon++;
 
     updateStats();
-
     text.innerText = "You bought a " + weapons[currentWeapon].name + "!";
   } else if (currentWeapon === weapons.length - 1) {
     text.innerText = "You already have the best weapon!";
@@ -236,13 +234,11 @@ function fightAlejandro() {
 
 function startFight(monsterIndex) {
   currentMonster = monsterIndex;
-
   monsterHealth = monsters[currentMonster].health;
 
   update(locations.fight);
 
   monsterStats.style.display = "block";
-
   monsterName.innerText = monsters[currentMonster].name;
   monsterHealthText.innerText = monsterHealth;
 
@@ -264,7 +260,7 @@ function attack() {
   text.innerText = "You attack " + monsters[currentMonster].name +
     " with your " + weapon.name + "!";
 
-  // Check whether monster has been defeated.
+  // Check whether the monster has been defeated.
   if (monsterHealth <= 0) {
     defeatMonster();
     return;
@@ -272,12 +268,10 @@ function attack() {
 
   // Monster attacks player.
   const damage = monsters[currentMonster].level * 2;
-
   health -= damage;
 
   text.innerText += " The monster attacks you for " + damage + " damage.";
 
-  // Update the screen.
   updateStats();
   monsterHealthText.innerText = monsterHealth;
 
@@ -300,7 +294,6 @@ function dodge() {
 
 function block() {
   const damage = monsters[currentMonster].level * 2;
-
   const reducedDamage = Math.ceil(damage / 2);
 
   health -= reducedDamage;
@@ -323,12 +316,10 @@ function defeatMonster() {
   const monster = monsters[currentMonster];
 
   xp += monster.level;
-
   gold += monster.level * 10;
 
   updateStats();
 
-  // Defeating the final monster wins the game.
   if (currentMonster === 3) {
     update(locations.win);
   } else {
@@ -357,7 +348,6 @@ function restart() {
   monsterHealth = 0;
 
   updateStats();
-
   goSpaceship();
 }
 
