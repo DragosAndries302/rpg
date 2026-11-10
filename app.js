@@ -28,6 +28,10 @@ const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
 const image = document.querySelector("#img");
+const attackSound = document.querySelector("#attackSound"); // SOUND
+const breakSound = document.querySelector("#breakSound"); // SOUND
+const defendSound = document.querySelector("#defendSound"); // SOUND
+const fightSound = document.querySelector("#fightSound"); // SOUND
 
 // ==========================================
 // 3. WEAPONS
@@ -140,7 +144,10 @@ const locations = {
 // 6. UPDATE THE GAME SCREEN
 // ==========================================
 
+// This function changes the buttons, text and picture.
+
 function update(location) {
+
   monsterStats.style.display = "none";
 
   button1.innerText = location.buttonText[0];
@@ -185,28 +192,42 @@ function goGalaxy() {
 // ==========================================
 
 function buyHealth() {
+
   if (gold >= 10) {
+
     gold -= 10;
     health += 10;
 
     updateStats();
+
     text.innerText = "You bought 10 health!";
+
   } else {
+
     text.innerText = "You do not have enough gold!";
+
   }
 }
 
 function buyWeapon() {
+
   if (currentWeapon < weapons.length - 1 && gold >= 50) {
+
     gold -= 50;
     currentWeapon++;
 
     updateStats();
+
     text.innerText = "You bought a " + weapons[currentWeapon].name + "!";
+
   } else if (currentWeapon === weapons.length - 1) {
+
     text.innerText = "You already have the best weapon!";
+
   } else {
+
     text.innerText = "You do not have enough gold!";
+
   }
 }
 
@@ -231,18 +252,24 @@ function fightAlejandro() {
 }
 
 function startFight(monsterIndex) {
+
   currentMonster = monsterIndex;
+
   monsterHealth = monsters[currentMonster].health;
 
   update(locations.fight);
+  fightSound.currentTime = 0; // SOUND
+  fightSound.play(); // SOUND
 
   monsterStats.style.display = "block";
+
   monsterName.innerText = monsters[currentMonster].name;
   monsterHealthText.innerText = monsterHealth;
 
   if (image) {
     image.src = monsters[currentMonster].picture;
   }
+
 }
 
 // ==========================================
@@ -250,25 +277,36 @@ function startFight(monsterIndex) {
 // ==========================================
 
 function attack() {
+
   const weapon = weapons[currentWeapon];
+  attackSound.currentTime = 0; // SOUND
+  attackSound.play(); // SOUND
 
   // Player attacks monster.
+
   monsterHealth -= weapon.power;
 
   text.innerText = "You attack " + monsters[currentMonster].name +
     " with your " + weapon.name + "!";
 
-  // Check whether the monster has been defeated.
+  // Check whether monster has been defeated.
+
   if (monsterHealth <= 0) {
+
     defeatMonster();
     return;
+
   }
 
   // Monster attacks player.
+
   const damage = monsters[currentMonster].level * 2;
+
   health -= damage;
 
   text.innerText += " The monster attacks you for " + damage + " damage.";
+
+  // Update the screen.
 
   updateStats();
   monsterHealthText.innerText = monsterHealth;
@@ -276,6 +314,7 @@ function attack() {
   if (health <= 0) {
     lose();
   }
+
 }
 
 // ==========================================
@@ -283,7 +322,11 @@ function attack() {
 // ==========================================
 
 function dodge() {
+
+  defendSound.currentTime = 0; // SOUND
+  defendSound.play(); // SOUND
   text.innerText = "You dodge the monster's attack!";
+
 }
 
 // ==========================================
@@ -291,8 +334,12 @@ function dodge() {
 // ==========================================
 
 function block() {
+
   const damage = monsters[currentMonster].level * 2;
+
   const reducedDamage = Math.ceil(damage / 2);
+  defendSound.currentTime = 0; // SOUND
+  defendSound.play(); // SOUND
 
   health -= reducedDamage;
 
@@ -304,6 +351,7 @@ function block() {
   if (health <= 0) {
     lose();
   }
+
 }
 
 // ==========================================
@@ -311,18 +359,29 @@ function block() {
 // ==========================================
 
 function defeatMonster() {
+
   const monster = monsters[currentMonster];
+  breakSound.currentTime = 0; // SOUND
+  breakSound.play(); // SOUND
 
   xp += monster.level;
+
   gold += monster.level * 10;
 
   updateStats();
 
+  // The final monster wins the game.
+
   if (currentMonster === 3) {
+
     update(locations.win);
+
   } else {
+
     update(locations.defeated);
+
   }
+
 }
 
 // ==========================================
@@ -330,7 +389,9 @@ function defeatMonster() {
 // ==========================================
 
 function lose() {
+
   update(locations.lose);
+
 }
 
 // ==========================================
@@ -338,6 +399,7 @@ function lose() {
 // ==========================================
 
 function restart() {
+
   xp = 0;
   health = 100;
   gold = 50;
@@ -346,7 +408,9 @@ function restart() {
   monsterHealth = 0;
 
   updateStats();
+
   goSpaceship();
+
 }
 
 function updateStats() {
