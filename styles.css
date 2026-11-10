@@ -62,6 +62,6 @@ button {
 #content img {
   display: block;
   max-width: 100%;
-  height: auto;
+  height: 320px;
   margin: 0 auto;
 }
