@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <title>RPG - Space Shooter</title>
     <link rel="stylesheet" href="styles.css">
+    <title>RPG - Space Shooter</title>
   </head>
 
   <body>
     <div id="game">
-
-      <!-- Statistics -->
       <div id="stats">
         <span class="stat">XP: <strong><span id="xpText">0</span></strong></span>
         <span class="stat">Health: <strong><span id="healthText">100</span></strong></span>
         <span class="stat">Gold: <strong><span id="goldText">50</span></strong></span>
       </div>
 
-      <!-- Game image -->
       <div id="content" style="background: black url('space.png') center / cover no-repeat;">
-        <img id="img" src="spaceship.png" class="center" alt="Space adventure">
+        <img id="img" src="spaceship.png" class="center" alt="Your spaceship">
       </div>
 
-      <!-- Buttons -->
       <div id="controls">
         <button id="button1">Go to Shop</button>
         <button id="button2">Go to Planet</button>
@@ -29,13 +24,11 @@
         <button id="button4">Fight Final Boss</button>
       </div>
 
-      <!-- Monster information -->
       <div id="monsterStats">
         <span class="stat">Enemy: <strong><span id="monsterName"></span></strong></span>
         <span class="stat">Health: <strong><span id="monsterHealth"></span></strong></span>
       </div>
 
-      <!-- Instructions -->
       <div id="text">
         Welcome to your RPG adventure! You are in your spaceship.
         Where do you want to go? Use the buttons above.
